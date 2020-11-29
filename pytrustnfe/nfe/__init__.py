@@ -90,6 +90,7 @@ def _send(certificado, method, **kwargs):
     base_url = localizar_url(
         method,  kwargs['estado'], kwargs['modelo'], kwargs['ambiente'])
     session = _get_session(certificado)
+    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     patch = has_patch(kwargs['estado'], method)
     if patch:
         return patch(session, xml_send, kwargs['ambiente'])
@@ -106,7 +107,6 @@ def _send_zeep(first_operation, client, xml_send):
     if namespaceNFe is not None:
         namespaceNFe.set('xmlns', 'http://www.portalfiscal.inf.br/nfe')
 
-    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     with client.settings(raw_response=True):
         response = client.service[first_operation](xml)
         response, obj = sanitize_response(response.text)
