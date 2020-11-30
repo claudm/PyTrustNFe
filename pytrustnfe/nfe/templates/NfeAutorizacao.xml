@@ -28,6 +28,12 @@
                 <indPres>{{ ide.indPres }}</indPres>
                 <procEmi>{{ ide.procEmi }}</procEmi>
                 <verProc>{{ ide.verProc }}</verProc>
+                {% if ide.dhCont is defined -%}
+                <dhCont>{{ ide.dhCont }}</dhCont>
+                {% endif %}
+                {% if ide.xJust is defined -%}
+                <xJust>{{ ide.xJust }}</xJust>
+                {% endif %}
                 {% if ide.NFref is defined -%}
                 {% for ref in ide.NFref %}
                 <NFref>

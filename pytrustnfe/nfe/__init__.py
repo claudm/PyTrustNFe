@@ -85,20 +85,21 @@ def _get_client(base_url, transport):
     return first_operation, client
 
 
-def _send(certificado, method, **kwargs):
+def _send(certificado, method, raise_for_status=False, **kwargs):
     xml_send = kwargs["xml"]
     base_url = localizar_url(
         method,  kwargs['estado'], kwargs['modelo'], kwargs['ambiente'])
     session = _get_session(certificado)
+    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     patch = has_patch(kwargs['estado'], method)
     if patch:
         return patch(session, xml_send, kwargs['ambiente'])
     transport = Transport(session=session)
     first_op, client = _get_client(base_url, transport)
-    return _send_zeep(first_op, client, xml_send)
+    return _send_zeep(first_op, client, xml_send, raise_for_status=raise_for_status)
 
 
-def _send_zeep(first_operation, client, xml_send):
+def _send_zeep(first_operation, client, xml_send, raise_for_status=False):
     parser = etree.XMLParser(strip_cdata=False)
     xml = etree.fromstring(xml_send, parser=parser)
 
@@ -106,9 +107,10 @@ def _send_zeep(first_operation, client, xml_send):
     if namespaceNFe is not None:
         namespaceNFe.set('xmlns', 'http://www.portalfiscal.inf.br/nfe')
 
-    requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
     with client.settings(raw_response=True):
         response = client.service[first_operation](xml)
+        if raise_for_status:
+            response.raise_for_status()
         response, obj = sanitize_response(response.text)
         return {
             'sent_xml': xml_send,
@@ -175,7 +177,7 @@ def xml_nfe_status_servico(certificado, **kwargs):
 def nfe_status_servico(certificado, **kwargs):
     if "xml" not in kwargs:
         kwargs['xml'] = xml_nfe_status_servico(certificado, **kwargs)
-    return _send(certificado, 'NfeStatusServico', **kwargs)
+    return _send(certificado, 'NfeStatusServico', raise_for_status=True, **kwargs)
 
 
 def xml_consulta_cadastro(certificado, **kwargs):
