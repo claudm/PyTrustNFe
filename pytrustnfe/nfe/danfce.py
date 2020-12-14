@@ -135,8 +135,10 @@ class danfce(object):
 
     def danfce_information(self, oXML=None):
         el_ide = oXML.find(".//{http://www.portalfiscal.inf.br/nfe}ide")
+        el_prot_nfe = oXML.find(
+            ".//{http://www.portalfiscal.inf.br/nfe}protNFe")
         tipo_emissao = tagtext(oNode=el_ide, cTag='tpEmis')
-        if tipo_emissao in ('5', '9'):
+        if tipo_emissao in ('5', '9') and not el_prot_nfe:
             self.current_height -= 5
             self.drawTitle("EMITIDA EM CONTINGÊNCIA",9, 'NimbusSanL-Bold')
             self.drawTitle("Pendente de autorização", 7, 'NimbusSanL-Bold')
@@ -147,7 +149,8 @@ class danfce(object):
                 7, 'NimbusSanL-Bold')
 
             self.drawTitle("Consumidor Eletrônica", 7, 'NimbusSanL-Bold')
-
+            if tipo_emissao in ('5', '9'):
+                self.drawString("EMITIDA EM CONTINGÊNCIA", True)
             self.drawString(
                 "NFC-e não permite aproveitamento de crédito de ICMS", True)
             self.drawLine()
@@ -340,7 +343,7 @@ class danfce(object):
         self._drawCenteredParagraph(text)
 
         tipo_emissao = tagtext(oNode=el_ide, cTag='tpEmis')
-        if tipo_emissao in ('5', '9'):
+        if tipo_emissao in ('5', '9') and not el_prot_nfe:
             self.current_height -= 8
             self.drawTitle("EMITIDA EM CONTINGÊNCIA",9, 'NimbusSanL-Bold')
             self.drawTitle("Pendente de autorização - Via Consumidor", 7, 'NimbusSanL-Bold')
