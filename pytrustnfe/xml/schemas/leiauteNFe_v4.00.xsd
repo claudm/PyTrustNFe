@@ -217,6 +217,19 @@ SCAN 900-999</xs:documentation>
 											</xs:restriction>
 										</xs:simpleType>
 									</xs:element>
+									<xs:element name="indIntermed">
+										<xs:annotation>
+											<xs:documentation>Indicador de intermediador/marketplace
+											(0- Operação sem intermediador (em site ou plataforma própria);1-Operação em site ou plataforma de terceiros(intermediadores/marketplace))</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:whiteSpace value="preserve"/>
+												<xs:enumeration value="0"/>
+												<xs:enumeration value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
 									<xs:element name="procEmi" type="TProcEmi">
 										<xs:annotation>
 											<xs:documentation>Processo de emissão utilizado com a seguinte codificação:
