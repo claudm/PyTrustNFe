@@ -233,6 +233,10 @@ class danfce(object):
                                '13': 'Vale Combustível',
                                '14': 'Duplicata Mercantil',
                                '15': 'Boleto Bancario',
+                               '16': 'Depósito Bancário',
+                               '17': 'Pagamento Instantâneo (PIX)',
+                               '18': 'Transferência bancária, Carteira Digital',
+                               '19': 'Programa de fidelidade, Cashback, Crédito Virtual',
                                '90': 'Sem Pagamento',
                                '99': 'Outros'}
         quant_produtos = len(oXML.findall(
