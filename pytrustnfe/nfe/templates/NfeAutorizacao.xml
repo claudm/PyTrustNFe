@@ -870,8 +870,11 @@
                     </card>
                     {% endif %}
                 </detPag>
-                <vTroco>{{ pag.vTroco }}</vTroco>
                 {% endfor %}
+                
+                {% if NFe.infNFe.vTroco is defined %}
+                <vTroco>{{ NFe.infNFe.vTroco }}</vTroco>
+                {% endif %}
             </pag>
             {% endif %}
             <infAdic>
