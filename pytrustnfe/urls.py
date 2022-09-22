@@ -113,7 +113,7 @@ URLS_EXIBICAO = {
         RO: 'www.sefin.ro.gov.br/nfce/consulta',
         RR: 'www.sefaz.rr.gov.br/nfce/consulta',
         RS: 'www.sefaz.rs.gov.br/nfce/consulta',
-        SC: ' https://sat.sef.sc.gov.br/nfce/consulta',
+        SC: 'https://sat.sef.sc.gov.br/nfce/consulta',
         SE: 'http://www.nfce.se.gov.br/nfce/consulta',
         SP: 'https://www.nfce.fazenda.sp.gov.br/consulta',
         TO: 'www.sefaz.to.gov.br/nfce/consulta',
