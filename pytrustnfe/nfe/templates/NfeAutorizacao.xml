@@ -860,6 +860,7 @@
                 <detPag>
                     <indPag>{{ pag.indPag }}</indPag>
                     <tPag>{{ pag.tPag }}</tPag>
+                    <xPag>{{ pag.xPag }}</xPag>
                     <vPag>{{ pag.vPag }}</vPag>
                     {% if pag.card is defined %}
                     <card>
