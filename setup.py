@@ -50,7 +50,7 @@ later (LGPLv2+)',
     install_requires=[
         'Jinja2 >= 2.8',
         'pyOpenSSL>= 16.0.0, <= 22.0.0',
-        'signxml  >= 2.9.0 <= 2.21',
+        'signxml  >= 2.9.0, <= 2.21',
         'lxml == 4.9.1',
         'suds-community >= 0.6',
         'reportlab',
