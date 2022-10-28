@@ -49,7 +49,7 @@ later (LGPLv2+)',
     long_description_content_type='text/markdown',
     install_requires=[
         'Jinja2 >= 2.8',
-        'pyOpenSSL==22.1.0',
+        'pyOpenSSL>= 16.0.0, < 18',
         'signxml == 2.9.0',
         'lxml == 4.9.0',
         'suds-community >= 0.6',
